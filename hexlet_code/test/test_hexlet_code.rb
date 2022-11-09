@@ -4,8 +4,23 @@ require "test_helper"
 autoload(:HexletCode, "../lib/hexlet_code")
 
 class TestHexletCode < Minitest::Test
+  def setup
+    Struct.new("User", :name, :job, keyword_init: true)
+    @user = Struct::User.new
+  end
+
   def test_that_it_has_a_version_number
     refute_nil ::HexletCode::VERSION
+  end
+
+  def test_it_returns_default_form
+    form = HexletCode.form_for(@user)
+    assert_equal(form, "<form action=\"#\" method=\"post\"></form>")
+  end
+
+  def test_it_returens_form_with_url
+    form = HexletCode.form_for(@user, "/users")
+    assert_equal(form, "<form action=\"/users\" method=\"post\"></form>")
   end
 
   def test_it_generates_empty_single_tag

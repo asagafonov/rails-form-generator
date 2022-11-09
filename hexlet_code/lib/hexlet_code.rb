@@ -3,6 +3,12 @@
 require_relative "hexlet_code/version"
 
 module HexletCode
+  class << self
+    def form_for(_user, url = "#")
+      "<form action=\"#{url}\" method=\"post\"></form>"
+    end
+  end
+
   class Error < StandardError; end
 
   class Tag
