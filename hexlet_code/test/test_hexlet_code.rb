@@ -13,7 +13,7 @@ class TestHexletCode < Minitest::Test
     assert_equal(result, "<img />")
   end
 
-  def test_it_generates_single_tag_without_params
+  def test_it_generates_single_tag_with_params
     result = HexletCode::Tag.build("img", src: "path/to/image", alt: "placeholder")
     assert_equal(result, "<img src=\"path/to/image\" alt=\"placeholder\" />")
   end
