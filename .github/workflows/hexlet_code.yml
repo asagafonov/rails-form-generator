@@ -7,6 +7,10 @@ on:
 
   pull_request:
 
+defaults:
+  run:
+    working-directory: hexlet_code
+
 jobs:
   build:
     runs-on: ubuntu-latest
