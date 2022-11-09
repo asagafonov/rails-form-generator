@@ -1,4 +1,4 @@
-[![Linter & Tests](https://github.com/asagafonov/rails-project-63/actions/workflows/hexlet-code.yml/badge.svg?branch=main)](https://github.com/asagafonov/rails-project-63/actions/workflows/hexlet-code.yml)
+[![linter & tests](https://github.com/asagafonov/rails-project-63/actions/workflows/hexlet-code.yml/badge.svg)](https://github.com/asagafonov/rails-project-63/actions/workflows/hexlet-code.yml)
 
 # HexletCode
 
