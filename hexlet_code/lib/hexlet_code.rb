@@ -37,14 +37,26 @@ module HexletCode
                 end
       end
 
+      def submit(value = "Save")
+        $tmp << build_submit(value)
+      end
+
       def build_input(field, attrs)
-        "<input name=\"#{field}\" type=\"text\" value=\"#{public_send(field)}\"#{attrs} />"
+        label = "<label for=\"#{field}\">#{field.to_s.capitalize}</label>"
+        input = "<input name=\"#{field}\" type=\"text\" value=\"#{public_send(field)}\"#{attrs} />"
+        "#{label}#{input}"
       end
 
       def build_textarea(field, attrs, options)
         cols = options[:cols] || 20
         rows = options[:rows] || 40
-        "<textarea name=\"#{field}\" cols=\"#{cols}\" rows=\"#{rows}\"#{attrs}>#{public_send(field)}</textarea>"
+        label = "<label for=\"#{field}\">#{field.to_s.capitalize}</label>"
+        input = "<textarea name=\"#{field}\" cols=\"#{cols}\" rows=\"#{rows}\"#{attrs}>#{public_send(field)}</textarea>"
+        "#{label}#{input}"
+      end
+
+      def build_submit(val)
+        "<input type=\"submit\" value=\"#{val}\" />"
       end
     end
   end

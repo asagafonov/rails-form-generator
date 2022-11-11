@@ -25,6 +25,7 @@ class TestHexletCode < Minitest::Test
   def test_it_returns_simple_form
     form = HexletCode.form_for(@user1) do |f|
       f.input(:name, as: "text")
+      f.submit
     end
 
     assert_equal(form, @example_form1)
@@ -34,6 +35,7 @@ class TestHexletCode < Minitest::Test
     form = HexletCode.form_for(@user2, url: "/users") do |f|
       f.input(:name, class: "user-input")
       f.input(:profession, as: "text", rows: 50, cols: 50)
+      f.submit("Send")
     end
 
     assert_equal(form, @example_form2)
