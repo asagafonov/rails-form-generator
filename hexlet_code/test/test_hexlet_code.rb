@@ -5,46 +5,50 @@ autoload(:HexletCode, "../lib/hexlet_code")
 
 class TestHexletCode < Minitest::Test
   def setup
-    Struct.new("User", :name, :job, keyword_init: true)
-    @user = Struct::User.new
+    @example_form1 = prepare_file("./test/fixtures/form1.txt")
+    @example_form2 = prepare_file("./test/fixtures/form2.txt")
+
+    Struct.new("User", :name, :profession, :gender, keyword_init: true)
+
+    @user1 = Struct::User.new(name: "Chuck")
+    @user2 = Struct::User.new(
+      name: "Bobby",
+      profession: "Software engineer",
+      gender: "male"
+    )
   end
 
   def test_that_it_has_a_version_number
     refute_nil ::HexletCode::VERSION
   end
 
-  def test_it_returns_default_form
-    form = HexletCode.form_for(@user)
-    assert_equal(form, "<form action=\"#\" method=\"post\"></form>")
+  def test_it_returns_simple_form
+    form = HexletCode.form_for(@user1) do |f|
+      f.input(:name, as: "text")
+    end
+
+    assert_equal(form, @example_form1)
   end
 
-  def test_it_returens_form_with_url
-    form = HexletCode.form_for(@user, "/users")
-    assert_equal(form, "<form action=\"/users\" method=\"post\"></form>")
+  def test_it_returns_complicated_form
+    form = HexletCode.form_for(@user2, url: "/users") do |f|
+      f.input(:name, class: "user-input")
+      f.input(:profession, as: "text", rows: 50, cols: 50)
+    end
+
+    assert_equal(form, @example_form2)
   end
 
-  def test_it_generates_empty_single_tag
-    result = HexletCode::Tag.build("img")
-    assert_equal(result, "<img />")
-  end
+  def test_forms_not_equal
+    form1 = HexletCode.form_for(@user1) do |f|
+      f.input(:name, as: "text")
+    end
 
-  def test_it_generates_single_tag_with_params
-    result = HexletCode::Tag.build("img", src: "path/to/image", alt: "placeholder")
-    assert_equal(result, "<img src=\"path/to/image\" alt=\"placeholder\" />")
-  end
+    form2 = HexletCode.form_for(@user2, url: "/users") do |f|
+      f.input(:name, class: "user-input")
+      f.input(:profession, as: "text", rows: 50, cols: 50)
+    end
 
-  def test_it_generates_empty_double_tag
-    result = HexletCode::Tag.build("div")
-    assert_equal(result, "<div></div>")
-  end
-
-  def test_it_generates_double_tag_with_params
-    result = HexletCode::Tag.build("div", prop1: "prop1", prop2: "prop2")
-    assert_equal(result, "<div prop1=\"prop1\" prop2=\"prop2\"></div>")
-  end
-
-  def test_it_generates_double_tag_with_params_and_text
-    result = HexletCode::Tag.build("div", prop1: "prop1", prop2: "prop2") { "Text content" }
-    assert_equal(result, "<div prop1=\"prop1\" prop2=\"prop2\">Text content</div>")
+    refute_equal(form1, form2)
   end
 end
