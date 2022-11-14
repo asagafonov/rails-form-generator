@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Tag
-  @@single_tags = %w[br hr img input link]
-
   class << self
     def build(tag, params = {})
       params_string = params.empty? ? '' : " #{params_to_s(params)}"
@@ -17,7 +15,8 @@ class Tag
     private
 
     def single_tag?(tag)
-      @@single_tags.include?(tag)
+      single_tags = %w[br hr img input link]
+      single_tags.include?(tag)
     end
 
     def params_to_s(params)
