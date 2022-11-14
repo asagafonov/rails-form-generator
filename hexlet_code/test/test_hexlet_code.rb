@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
-autoload(:HexletCode, "../lib/hexlet_code")
+require_relative "../lib/hexlet_code"
 
 class TestHexletCode < Minitest::Test
   def setup

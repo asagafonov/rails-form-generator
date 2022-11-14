@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "nokogiri"
-autoload(:Tag, "./lib/tag/tag")
 
 class FormView
+  autoload(:Tag, "./lib/tag/tag")
   attr_accessor :form
 
   def initialize(url = "#", method = "post")

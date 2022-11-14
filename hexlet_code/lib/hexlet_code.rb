@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require_relative "hexlet_code/version"
-autoload(:Tag, "./lib/tag/tag")
-autoload(:FormView, "./lib/form_view/form_view")
 
 module HexletCode
+  autoload(:FormView, "./lib/form_view/form_view")
+
   class << self
     def form_for(user, url: "#")
       user.extend(Input)
