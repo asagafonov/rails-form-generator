@@ -5,8 +5,8 @@ class Tag
 
   class << self
     def build(tag, params = {})
-      params_string = params.empty? ? "" : " #{params_to_s(params)}"
-      text_content = block_given? ? yield : ""
+      params_string = params.empty? ? '' : " #{params_to_s(params)}"
+      text_content = block_given? ? yield : ''
 
       single_tag_output = "<#{tag}#{params_string} />"
       double_tag_output = "<#{tag}#{params_string}>#{text_content}</#{tag}>"
@@ -24,7 +24,7 @@ class Tag
       params
         .keys
         .map { |key| "#{key}=\"#{params[key]}\"" }
-        .join(" ")
+        .join(' ')
     end
   end
 end

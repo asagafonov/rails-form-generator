@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "nokogiri"
-require_relative "../tag/tag"
+require 'nokogiri'
+require_relative '../tag/tag'
 
 class FormView
   attr_accessor :form
 
-  def initialize(url = "#", method = "post")
+  def initialize(url = '#', method = 'post')
     @form = {
       action: url,
       method:,
@@ -19,8 +19,8 @@ class FormView
   end
 
   def to_s
-    Tag.build("form", action: form[:action], method: form[:method]) do
-      return "" if form[:inputs].empty?
+    Tag.build('form', action: form[:action], method: form[:method]) do
+      return '' if form[:inputs].empty?
 
       form[:inputs].map { |input| build_input(input) }.join
     end
@@ -33,11 +33,11 @@ class FormView
   private
 
   def build_input(input)
-    label = ""
-    label = Tag.build("label", for: input[:field]) { input[:field].capitalize } if input[:options][:type] != "submit"
+    label = ''
+    label = Tag.build('label', for: input[:field]) { input[:field].capitalize } if input[:options][:type] != 'submit'
 
     input_field = Tag.build(input[:type], input[:options]) do
-      input[:type] == "textarea" ? input[:field_value] : ""
+      input[:type] == 'textarea' ? input[:field_value] : ''
     end
 
     "#{label}#{input_field}"
