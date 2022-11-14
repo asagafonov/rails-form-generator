@@ -24,7 +24,7 @@ class TestHexletCode < Minitest::Test
 
   def test_it_returns_simple_form
     form = HexletCode.form_for(@user1) do |f|
-      f.input(:name, as: "text")
+      f.input(:name, as: :text)
       f.submit
     end
 
@@ -34,7 +34,7 @@ class TestHexletCode < Minitest::Test
   def test_it_returns_complicated_form
     form = HexletCode.form_for(@user2, url: "/users") do |f|
       f.input(:name, class: "user-input")
-      f.input(:profession, as: "text", rows: 50, cols: 50)
+      f.input(:profession, as: :text, rows: 50, cols: 50)
       f.submit("Send")
     end
 
@@ -43,12 +43,12 @@ class TestHexletCode < Minitest::Test
 
   def test_forms_not_equal
     form1 = HexletCode.form_for(@user1) do |f|
-      f.input(:name, as: "text")
+      f.input(:name, as: :text)
     end
 
     form2 = HexletCode.form_for(@user2, url: "/users") do |f|
       f.input(:name, class: "user-input")
-      f.input(:profession, as: "text", rows: 50, cols: 50)
+      f.input(:profession, as: :text, rows: 50, cols: 50)
     end
 
     refute_equal(form1, form2)

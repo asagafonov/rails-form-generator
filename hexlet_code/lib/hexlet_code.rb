@@ -19,7 +19,7 @@ module HexletCode
       def input(name, **kwargs)
         form_view = instance_variable_get(:@form_view)
 
-        type = kwargs[:as] == "text" ? "textarea" : "input"
+        type = kwargs[:as] == :text ? "textarea" : "input"
         options = build_options(type, name, kwargs)
 
         form_view.add_input({ type:, field: name.to_s, field_value: public_send(name), options: })
