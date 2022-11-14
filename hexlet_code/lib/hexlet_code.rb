@@ -22,14 +22,8 @@ module HexletCode
         type = kwargs[:as] == "text" ? "textarea" : "input"
         options = build_options(type, name, kwargs)
 
-        begin
-          raise unless public_send(name)
-
-          form_view.add_input({ type:, field: name.to_s, field_value: public_send(name), options: })
-          instance_variable_set(:@form_view, form_view)
-        rescue NoMethodError => e
-          puts "#{e}: no such attr as #{name}"
-        end
+        form_view.add_input({ type:, field: name.to_s, field_value: public_send(name), options: })
+        instance_variable_set(:@form_view, form_view)
       end
 
       def submit(value = "Save")
