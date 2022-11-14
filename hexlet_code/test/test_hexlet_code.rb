@@ -53,4 +53,12 @@ class TestHexletCode < Minitest::Test
 
     refute_equal(form1, form2)
   end
+
+  def test_raise_if_has_inexistant_field
+    assert_raises do
+      HexletCode.form_for(@user1) do |f|
+        f.input(:inexistant_attribute)
+      end
+    end
+  end
 end
