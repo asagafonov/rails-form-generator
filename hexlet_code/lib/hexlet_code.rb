@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require_relative "hexlet_code/version"
-require_relative "./form_view/form_view"
 
 module HexletCode
+  autoload(:FormView, "#{__dir__}/form_view/form_view")
+
   class << self
     def form_for(user, url: "#")
       user.extend(Input)
@@ -16,15 +17,19 @@ module HexletCode
 
     module Input
       def input(name, **kwargs)
-        raise unless public_send(name)
-
         form_view = instance_variable_get(:@form_view)
 
         type = kwargs[:as] == "text" ? "textarea" : "input"
         options = build_options(type, name, kwargs)
-        form_view.add_input({ type:, field: name.to_s, field_value: public_send(name), options: })
 
-        instance_variable_set(:@form_view, form_view)
+        begin
+          raise unless public_send(name)
+
+          form_view.add_input({ type:, field: name.to_s, field_value: public_send(name), options: })
+          instance_variable_set(:@form_view, form_view)
+        rescue NoMethodError => e
+          puts "#{e}: no such attr as #{name}"
+        end
       end
 
       def submit(value = "Save")
