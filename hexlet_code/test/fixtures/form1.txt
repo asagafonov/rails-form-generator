@@ -1,1 +1,0 @@
-<form action="#" method="post"><label for="name">Name</label><textarea name="name" cols="20" rows="40">Chuck</textarea><input type="submit" value="Save" /></form>
