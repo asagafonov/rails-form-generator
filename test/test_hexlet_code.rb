@@ -4,9 +4,11 @@ require 'test_helper'
 require_relative '../lib/hexlet_code'
 
 class TestHexletCode < Minitest::Test
-  def setup
+  def self.prepare
     Struct.new('User', :name, :profession, :gender, keyword_init: true)
   end
+
+  prepare
 
   def test_that_it_has_a_version_number
     refute_nil HexletCode::VERSION
