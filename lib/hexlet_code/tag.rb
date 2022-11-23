@@ -4,14 +4,11 @@ module HexletCode
   class Tag
     class << self
       def build(tag, params = {})
-        text_content = block_given? ? yield : ''
         attrs = build_attrs(params)
+        return "<#{tag}#{attrs}>" if single_tag?(tag)
 
-        if single_tag?(tag)
-          "<#{tag}#{attrs}>"
-        else
-          "<#{tag}#{attrs}>#{text_content}</#{tag}>"
-        end
+        text_content = block_given? ? yield : ''
+        "<#{tag}#{attrs}>#{text_content}</#{tag}>"
       end
 
       private
