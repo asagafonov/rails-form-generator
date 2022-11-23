@@ -34,7 +34,6 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   spec.add_development_dependency 'minitest', '~> 5.0'
-  spec.add_development_dependency 'nokogiri', '~> 1.13'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rubocop', '~> 1.21'
 

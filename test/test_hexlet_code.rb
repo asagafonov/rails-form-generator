@@ -16,8 +16,7 @@ class TestHexletCode < Minitest::Test
 
   def test_it_returns_simple_form
     user = Struct::User.new(name: 'Chuck')
-    fixture = load_fixture('form_simple.html')
-    expected_form = parse_html(fixture)
+    expected_form = load_fixture('form_simple.html')
 
     form = HexletCode.form_for(user) do |f|
       f.input(:name, as: :text)
@@ -29,8 +28,7 @@ class TestHexletCode < Minitest::Test
 
   def test_it_returns_complicated_form
     user = Struct::User.new(name: 'Bobby', profession: 'Software engineer', gender: 'male')
-    fixture = load_fixture('form_complicated.html')
-    expected_form = parse_html(fixture)
+    expected_form = load_fixture('form_complicated.html')
 
     form = HexletCode.form_for(user, url: '/users') do |f|
       f.input(:name, class: 'user-input')
