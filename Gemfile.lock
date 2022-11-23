@@ -9,14 +9,9 @@ GEM
     ast (2.4.2)
     json (2.6.2)
     minitest (5.16.3)
-    nokogiri (1.13.9-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.9-x86_64-linux)
-      racc (~> 1.4)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
-    racc (1.6.0)
     rainbow (3.1.1)
     rake (13.0.6)
     regexp_parser (2.6.0)
@@ -43,7 +38,6 @@ PLATFORMS
 DEPENDENCIES
   hexlet_code!
   minitest (~> 5.0)
-  nokogiri (~> 1.13)
   rake (~> 13.0)
   rubocop (~> 1.21)
 
