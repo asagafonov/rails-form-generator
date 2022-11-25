@@ -18,11 +18,11 @@ module HexletCode
 
       def render_input(input)
         case input[:type]
-        when 'input'
+        when :default
           Input.render(input)
-        when 'textarea'
+        when :text
           Textarea.render(input)
-        when 'submit'
+        when :submit
           Submit.render(input)
         else
           ''

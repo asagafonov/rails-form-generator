@@ -17,14 +17,13 @@ module HexletCode
 
     def input(name, **kwargs)
       value = user_data.public_send(name)
-      type = kwargs[:as] == :text ? 'textarea' : 'input'
       options = kwargs.except(:as).merge({ name:, value: })
 
-      add_input({ type:, options: })
+      add_input({ type: kwargs[:as] || :default, options: })
     end
 
     def submit(value = 'Save')
-      add_input({ type: 'submit', options: { value: } })
+      add_input({ type: :submit, options: { value: } })
     end
 
     def compose
