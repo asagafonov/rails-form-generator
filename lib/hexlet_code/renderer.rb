@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 module HexletCode
-  autoload(:Tag, 'hexlet_code/tag')
-  autoload(:Input, 'hexlet_code/inputs/input')
-  autoload(:Textarea, 'hexlet_code/inputs/textarea')
-  autoload(:Submit, 'hexlet_code/inputs/submit')
-
   class Renderer
     class << self
       def render(form)
@@ -17,16 +12,9 @@ module HexletCode
       end
 
       def render_input(input)
-        case input[:type]
-        when :default
-          Input.render(input)
-        when :text
-          Textarea.render(input)
-        when :submit
-          Submit.render(input)
-        else
-          ''
-        end
+        renderer_class = HexletCode.const_get(input[:type])
+
+        renderer_class.render(input)
       end
     end
   end

@@ -2,13 +2,10 @@
 
 module HexletCode
   class FormView
-    autoload(:Renderer, 'hexlet_code/renderer')
+    attr_reader :form
 
-    attr_reader :user_data
-    attr_accessor :form
-
-    def initialize(user, params)
-      @user_data = user
+    def initialize(data, params)
+      @data = data
       @form = {
         params: { action: params[:url] || '#', method: 'post' }.merge(params.except(:url)),
         inputs: []
@@ -16,18 +13,15 @@ module HexletCode
     end
 
     def input(name, **kwargs)
-      value = user_data.public_send(name)
+      value = @data.public_send(name)
       options = kwargs.except(:as).merge({ name:, value: })
+      type = kwargs[:as] == :text ? 'Textarea' : 'Input'
 
-      add_input({ type: kwargs[:as] || :default, options: })
+      add_input({ type:, options: })
     end
 
     def submit(value = 'Save')
-      add_input({ type: :submit, options: { value: } })
-    end
-
-    def compose
-      Renderer.render(form)
+      add_input({ type: 'Submit', options: { value: } })
     end
 
     private
