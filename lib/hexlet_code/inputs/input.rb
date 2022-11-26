@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 
 module HexletCode
-  autoload(:Tag, 'hexlet_code/tag')
-  autoload(:Label, 'hexlet_code/inputs/label')
-
-  class Input
+  class Input < BasicInput
     def self.render(input)
       options = defaults.merge(input[:options])
 
       input_field = Tag.build('input', options)
 
-      label = Label.render(input[:options][:name])
+      label = render_label(input[:options][:name])
       "#{label}#{input_field}"
     end
 

@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  autoload(:Tag, 'hexlet_code/tag')
-  autoload(:Label, 'hexlet_code/inputs/label')
-
-  class Textarea
+  class Textarea < BasicInput
     def self.render(input)
       options = defaults.merge(input[:options]).except(:value)
 
@@ -12,7 +9,7 @@ module HexletCode
         input[:options][:value]
       end
 
-      label = Label.render(input[:options][:name])
+      label = render_label(input[:options][:name])
       "#{label}#{textarea}"
     end
 
